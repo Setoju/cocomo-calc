@@ -1,0 +1,233 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0f1117;
+  color: #e2e8f0;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── App Shell ────────────────────────────────────────────── */
+.cocomo-app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.app-header h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: #64748b;
+  margin-top: 0.4rem;
+  font-size: 1rem;
+}
+
+/* ── Input Section ────────────────────────────────────────── */
+.input-section {
+  background: #1e2130;
+  border: 1px solid #2d3348;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.75rem;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.input-wrapper input[type="number"] {
+  flex: 1;
+  background: #0f1117;
+  border: 2px solid #2d3348;
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  color: #f1f5f9;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.input-wrapper input[type="number"]::-webkit-outer-spin-button,
+.input-wrapper input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.input-wrapper input[type="number"]:focus {
+  border-color: #60a5fa;
+}
+
+.unit-badge {
+  background: #2563eb;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0 1.2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 0 10px 10px 0;
+  min-height: 4rem;
+  letter-spacing: 0.05em;
+}
+
+.hint {
+  color: #475569;
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+}
+
+/* ── Results Section ──────────────────────────────────────── */
+.results-section {
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+.results-heading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.results-heading .kloc-value {
+  color: #60a5fa;
+  font-size: 1.4rem;
+}
+
+.kloc-loc {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+/* ── Results Grid ─────────────────────────────────────────── */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ── Result Card ──────────────────────────────────────────── */
+.result-card {
+  background: #1e2130;
+  border: 1px solid #2d3348;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.result-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+.result-card--organic     { border-top: 3px solid #34d399; }
+.result-card--semi_detached { border-top: 3px solid #fbbf24; }
+.result-card--embedded    { border-top: 3px solid #f87171; }
+
+.card-header {
+  padding: 1.25rem 1.25rem 0.75rem;
+}
+
+.card-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.card-description {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+}
+
+/* ── Metrics ──────────────────────────────────────────────── */
+.card-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0 0.5rem 1rem;
+}
+
+.metric {
+  padding: 0.75rem 0.75rem;
+  text-align: center;
+}
+
+.metric-value {
+  display: block;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #e2e8f0;
+  line-height: 1.1;
+}
+
+.metric-label {
+  display: block;
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+.metric-label em {
+  font-style: normal;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* ── Formula Note ─────────────────────────────────────────── */
+.formula-note {
+  text-align: center;
+  color: #334155;
+  font-size: 0.8rem;
+  margin-top: 1.5rem;
+}

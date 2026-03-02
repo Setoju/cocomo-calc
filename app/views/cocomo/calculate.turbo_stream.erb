@@ -1,0 +1,47 @@
+<%= turbo_stream.update "cocomo-results" do %>
+  <% if @kloc > 0 && @results.any? %>
+    <section class="results-section">
+      <h2 class="results-heading">
+        Estimates for <span class="kloc-value"><%= @kloc %></span> KLOC
+        &nbsp;<span class="kloc-loc">(<%= (@kloc * 1000).to_i.to_s.gsub(/\B(?=(\d{3})+(?!\d))/, ',') %> lines)</span>
+      </h2>
+
+      <div class="results-grid">
+        <% @results.each do |key, r| %>
+          <div class="result-card result-card--<%= key %>">
+            <div class="card-header">
+              <h3><%= r[:label] %></h3>
+              <p class="card-description"><%= r[:description] %></p>
+            </div>
+            <div class="card-metrics">
+              <div class="metric">
+                <span class="metric-value"><%= r[:effort] %></span>
+                <span class="metric-label">Person-months<br><em>Effort</em></span>
+              </div>
+              <div class="metric">
+                <span class="metric-value"><%= r[:duration] %></span>
+                <span class="metric-label">Months<br><em>Duration</em></span>
+              </div>
+              <div class="metric">
+                <span class="metric-value"><%= r[:team] %></span>
+                <span class="metric-label">People<br><em>Team size</em></span>
+              </div>
+              <div class="metric">
+                <span class="metric-value"><%= r[:productivity] %></span>
+                <span class="metric-label">KLOC/PM<br><em>Productivity</em></span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <p class="formula-note">
+        Effort = a &times; KLOC<sup>b</sup> &nbsp;|&nbsp;
+        Duration = c &times; Effort<sup>d</sup> &nbsp;|&nbsp;
+        Team = Effort &divide; Duration
+      </p>
+    </section>
+  <% else %>
+    <%# empty – clear the results area %>
+  <% end %>
+<% end %>

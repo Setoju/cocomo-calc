@@ -1,0 +1,34 @@
+<div class="cocomo-app">
+  <header class="app-header">
+    <h1>COCOMO Calculator</h1>
+    <p class="subtitle">Constructive Cost Model &mdash; Basic Estimate</p>
+  </header>
+
+  <section class="input-section" data-controller="cocomo-form">
+    <%= form_with url: cocomo_calculate_path, method: :post,
+          data: { cocomo_form_target: "form", turbo_stream: true } do |f| %>
+      <div class="input-group">
+        <label for="kloc">Lines of Code (thousands / KLOC)</label>
+        <div class="input-wrapper">
+          <input
+            type="number"
+            id="kloc"
+            name="kloc"
+            min="0.1"
+            step="0.1"
+            placeholder="e.g. 50"
+            autocomplete="off"
+            data-cocomo-form-target="klocInput"
+            data-action="input->cocomo-form#submit"
+          >
+          <span class="unit-badge">KLOC</span>
+        </div>
+        <p class="hint">Enter the estimated size in thousands of lines of code. Results update instantly.</p>
+      </div>
+    <% end %>
+  </section>
+
+  <div id="cocomo-results">
+    <%# Turbo Stream replaces this div with results %>
+  </div>
+</div>
